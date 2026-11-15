@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<structure>
+<type>turing</type>
+<automaton>
+<!--The list of states.-->
+<state id="0" name="qS">
+<x>60.0</x>
+<y>150.0</y>
+<initial/>
+</state>
+<state id="1" name="q0">
+<x>240.0</x>
+<y>150.0</y>
+</state>
+<state id="2" name="q1">
+<x>420.0</x>
+<y>150.0</y>
+</state>
+<state id="3" name="q2">
+<x>600.0</x>
+<y>150.0</y>
+</state>
+<state id="4" name="qF">
+<x>780.0</x>
+<y>150.0</y>
+<final/>
+</state>
+<!--qS: read first symbol of first operand-->
+<transition>
+<from>0</from>
+<to>1</to>
+<read>1</read>
+<write>1</write>
+<move>R</move>
+</transition>
+<!--q0: scan rest of first operand-->
+<transition>
+<from>1</from>
+<to>1</to>
+<read>1</read>
+<write>1</write>
+<move>R</move>
+</transition>
+<!--q0: cross separator (unchanged for now)-->
+<transition>
+<from>1</from>
+<to>2</to>
+<read>0</read>
+<write>0</write>
+<move>R</move>
+</transition>
+<!--q1: scan second operand-->
+<transition>
+<from>2</from>
+<to>2</to>
+<read>1</read>
+<write>1</write>
+<move>R</move>
+</transition>
+<!--q1: hit blank at end, turn around-->
+<transition>
+<from>2</from>
+<to>3</to>
+<read>_</read>
+<write>_</write>
+<move>L</move>
+</transition>
+<!--q2: move back left over second operand-->
+<transition>
+<from>3</from>
+<to>3</to>
+<read>1</read>
+<write>1</write>
+<move>L</move>
+</transition>
+<!--q2: replace separator 0 with 1, move right, halt-->
+<transition>
+<from>3</from>
+<to>4</to>
+<read>0</read>
+<write>1</write>
+<move>R</move>
+</transition>
+</automaton>
+</structure>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<structure>
+<type>pda</type>
+<automaton>
+<!--The list of states.-->
+<state id="0" name="qS">
+<x>60.0</x>
+<y>150.0</y>
+<initial/>
+</state>
+<state id="1" name="qP">
+<x>260.0</x>
+<y>150.0</y>
+</state>
+<state id="2" name="qM">
+<x>460.0</x>
+<y>150.0</y>
+</state>
+<state id="3" name="qF">
+<x>660.0</x>
+<y>150.0</y>
+<final/>
+</state>
+<!--Start: initialize stack-->
+<transition>
+<from>0</from>
+<to>1</to>
+<read/>
+<pop>Z</pop>
+<push>Z</push>
+</transition>
+<!--qP: push phase, input a, for each possible stack top (X = Z, a, b)-->
+<transition>
+<from>1</from>
+<to>1</to>
+<read>a</read>
+<pop>Z</pop>
+<push>aZ</push>
+</transition>
+<transition>
+<from>1</from>
+<to>1</to>
+<read>a</read>
+<pop>a</pop>
+<push>aa</push>
+</transition>
+<transition>
+<from>1</from>
+<to>1</to>
+<read>a</read>
+<pop>b</pop>
+<push>ab</push>
+</transition>
+<!--qP: push phase, input b, for each possible stack top (X = Z, a, b)-->
+<transition>
+<from>1</from>
+<to>1</to>
+<read>b</read>
+<pop>Z</pop>
+<push>bZ</push>
+</transition>
+<transition>
+<from>1</from>
+<to>1</to>
+<read>b</read>
+<pop>a</pop>
+<push>ba</push>
+</transition>
+<transition>
+<from>1</from>
+<to>1</to>
+<read>b</read>
+<pop>b</pop>
+<push>bb</push>
+</transition>
+<!--qP: read separator c, cross midpoint, stack top unchanged (X = Z, a, b)-->
+<transition>
+<from>1</from>
+<to>2</to>
+<read>c</read>
+<pop>Z</pop>
+<push>Z</push>
+</transition>
+<transition>
+<from>1</from>
+<to>2</to>
+<read>c</read>
+<pop>a</pop>
+<push>a</push>
+</transition>
+<transition>
+<from>1</from>
+<to>2</to>
+<read>c</read>
+<pop>b</pop>
+<push>b</push>
+</transition>
+<!--qM: match and pop phase-->
+<transition>
+<from>2</from>
+<to>2</to>
+<read>a</read>
+<pop>a</pop>
+<push/>
+</transition>
+<transition>
+<from>2</from>
+<to>2</to>
+<read>b</read>
+<pop>b</pop>
+<push/>
+</transition>
+<!--Accept when stack back to bottom marker-->
+<transition>
+<from>2</from>
+<to>3</to>
+<read/>
+<pop>Z</pop>
+<push>Z</push>
+</transition>
+</automaton>
+</structure>
